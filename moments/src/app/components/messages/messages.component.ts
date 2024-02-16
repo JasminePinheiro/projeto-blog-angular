@@ -11,7 +11,7 @@ export class MessagesComponent implements OnInit {
   faTimes = faTimes;
   
   // quando colocamos publico temos acesso ao template 
-  constructor(public messegesService: MessagesService) { } 
+  constructor(public messagesService: MessagesService) { } 
 
   ngOnInit(): void {
   }

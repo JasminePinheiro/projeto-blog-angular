@@ -1,0 +1,25 @@
+<form (ngSubmit)="submit()" [formGroup]="momentForm" #formDir="ngForm">
+    <!--formGroup é um grupo de formulario que serve para fazer o mapeamento das validações dos nossos inputs -->
+    <div class="form-group">
+        <label for="title">Titulo:</label>
+        <input formControlName="title" type="text" placeholder="Coloque um título" required>
+    </div>
+    <div *ngIf="title.invalid && formDir.submitted" class="validation-error">
+        <p>O título é obrigatório.</p>
+    </div>
+    <div class="form-group">
+        <label for="description">Descrição:</label>
+        <textarea formControlName="description" placeholder="O que aconteceu lá?"></textarea>
+    </div>
+    <div *ngIf="description.invalid && formDir.submitted" class="validation-error">
+        <p>A descrição é obrigatória.</p>
+    </div>
+    <div class="form-group">
+        <label for="image">Coloque a foto que mais te marcou:</label>
+        <input type="file" (change)="onFileSelected($event)">
+    </div>
+    <input type="submit" value="{{ btnText }}">
+</form>
+
+<!-- formDir: Para identificar onde está o meu formulário  -->
+<!-- Formularios reativos entendem assim quando o usuário digita um valor no input-->

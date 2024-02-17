@@ -12,11 +12,13 @@ import { environment } from 'src/environments/environment'; // pegando a url da 
 export class HomeComponent implements OnInit {
 
   // fazendo a busca no filtro
-  allMoments: Moment[] = []
+  allMoments: Moment[] = [] // todos os momentos que estão sendo exibido
   moments: Moment[] = []
   baseApiUrl = environment.baseApiUrl
 
-  // search
+  faSearch = faSearch
+  searchTerm: string = '';
+
   constructor(private momentService: MomentService) { }
 
   ngOnInit(): void {
@@ -29,9 +31,22 @@ export class HomeComponent implements OnInit {
         item.created_at = new Date(item.created_at!).toLocaleDateString('pt-BR'); // pode de exclamação pq é certeza que a data vai vim
       });
 
-        this.allMoments = data
-        this.moments = data
+      this.allMoments = data
+      this.moments = data
     });
   }
+
+  search(e: Event): void {
+
+    const target = e.target as HTMLInputElement
+    const value = target.value
+
+    // quando colocamos o escopode bloco para a arrow function preciso fazer um retorno
+    this.moments = this.allMoments.filter((moment) => {
+      return moment.title.toLocaleLowerCase().includes(value);
+    })
+
+  }
+
 
 }

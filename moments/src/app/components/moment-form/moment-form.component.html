@@ -1,5 +1,6 @@
 <form (ngSubmit)="submit()" [formGroup]="momentForm" #formDir="ngForm">
     <!--formGroup é um grupo de formulario que serve para fazer o mapeamento das validações dos nossos inputs -->
+   <input type="hidden" formControlName="id">
     <div class="form-group">
         <label for="title">Titulo:</label>
         <input formControlName="title" type="text" placeholder="Coloque um título" required>
